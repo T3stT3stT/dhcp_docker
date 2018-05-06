@@ -16,5 +16,5 @@ EXPOSE 67
 
 ENTRYPOINT [ \
   "dhcpd", \
- "-cf", "/data/dhcpd.conf", \
+ "-cf", "/conf/dhcp/dhcpd.conf", \
  "--no-pid", "-4", "-f", "eth0" \]
