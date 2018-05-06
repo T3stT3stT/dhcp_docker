@@ -12,12 +12,9 @@ RUN apt-get update \
 	&& apt-get install -y bind9 isc-dhcp-server
 
 	
-RUN ["touch", "/var/lib/dhcp/dhcpd.leases"]
+EXPOSE 67
 
-ADD	conf/dhcp /etc/dhcp/
-
-VOLUME ["/etc/dhcp"]
-
-ENTRYPOINT ["/bin/bash"]
-
-CMD ["/usr/sbin/dhcpd", "-4", "-f", "-d", "--no-pid", "-cf", "/etc/dhcp/dhcpd.conf"]]
+ENTRYPOINT [ \
+  "dhcpd", \
+ "-cf", "/data/dhcpd.conf", \
+ "--no-pid", "-4", "-f", "eth0" \]
